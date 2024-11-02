@@ -15,9 +15,9 @@ export default function HomeBeforeLogin() {
       <Image
         src="/images/ce_logo.png"
         alt={"logo"}
-        width={315.66}
+        width={500}
         height={95.22}
-        style={{ margin: "0px 0px 107px 0" }}
+        style={{ margin: "0px 0px 80px 0" }}
       />
       <KakaoLogin />
     </Container>
@@ -30,5 +30,5 @@ const Container = styled.div`
   align-items: center;
   background-color: ${colors.primary};
   height: 100%;
-  padding: 180px 24px 0 24px;
+  padding: 90px 24px 0 24px;
 `;

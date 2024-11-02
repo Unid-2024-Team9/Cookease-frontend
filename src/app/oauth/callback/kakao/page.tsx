@@ -14,7 +14,8 @@ const KakaoCallback = () => {
 
       try {
         const response = await axios.get(
-          `https://banggeul.store/login/kakao?code=${code}`
+          // `https://banggeul.store/login/kakao?code=${code}`
+          `http://43.201.46.230:8080/api/v1/login/kakao?code=${code}`
         );
         const access_token = response.data.response["accessToken"];
         console.log(access_token);
@@ -23,9 +24,9 @@ const KakaoCallback = () => {
           "Authorization"
         ] = `Bearer ${access_token}`;
 
-        axios.get("https://banggeul.store/check").then((response: any) => {
-          console.log(response);
-        });
+        // axios.get("https://banggeul.store/check").then((response: any) => {
+        //   console.log(response);
+        // });
       } catch (error) {
         console.error("kakaoLogin error:", error);
       }

@@ -25,6 +25,7 @@ export default function Home() {
     useState(undefined);
 
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [isFull, setIsFull] = useState(false);
 
   const refrigeratedSubCatergoryEmoji = new Map();
   refrigeratedSubCatergoryEmoji.set("소고기", "🥩");
@@ -57,7 +58,80 @@ export default function Home() {
             }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                height: "100%",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <CategoryCicleWithDetail
+                  title={"🥩"}
+                  detail={"소고기"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🐟"}
+                  detail={"고등어"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🐡"}
+                  detail={"참치"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🍎"}
+                  detail={"사과"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🍈"}
+                  detail={"멜론"}
+                  setter={undefined}
+                  set={undefined}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <CategoryCicleWithDetail
+                  title={"🥬"}
+                  detail={"상추"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🥕"}
+                  detail={"당근"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <DummyItem></DummyItem>
+                <DummyItem></DummyItem>
+                <DummyItem></DummyItem>
+              </div>
+            </div>
+          )}
+        </Fridge>
 
         <div
           style={{
@@ -75,9 +149,53 @@ export default function Home() {
             width={30}
             height={30}
             style={{ marginRight: "13px", cursor: "pointer" }}
+            onClick={() => {
+              setIsFull(true);
+            }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
+              }}
+            >
+              <CategoryCicleWithDetail
+                title={"🥟"}
+                detail={"물만두"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍦"}
+                detail={"메로나"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍕"}
+                detail={"냉동 피자"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🧀"}
+                detail={"치즈"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍗"}
+                detail={"냉동 치킨"}
+                setter={undefined}
+                set={undefined}
+              />
+            </div>
+          )}
+        </Fridge>
 
         <div
           style={{
@@ -97,7 +215,33 @@ export default function Home() {
             style={{ marginRight: "13px", cursor: "pointer" }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
+              }}
+            >
+              <CategoryCicleWithDetail
+                title={"🧂"}
+                detail={"소금"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🌶️"}
+                detail={"고춧가루"}
+                setter={undefined}
+                set={undefined}
+              />
+              <DummyItem></DummyItem>
+              <DummyItem></DummyItem>
+              <DummyItem></DummyItem>
+            </div>
+          )}
+        </Fridge>
         <div style={{ width: "100%", height: "40px" }}></div>
       </Container>
       <SlideUpModal
@@ -399,7 +543,14 @@ const Fridge = styled.div`
   width: 100%;
   height: 282px;
 
+  padding: 20px;
+
   background-color: #fafafb;
   border: 1px solid #d9d9d9;
   border-radius: 25px;
+`;
+
+const DummyItem = styled.div`
+  width: 80px;
+  height: 91px;
 `;
