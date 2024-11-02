@@ -21,8 +21,8 @@ const nextConfig = {
     ],
   },
   env: {
-    KAKAO_API_KEY: process.env.KAKAO_API_KEY,
-    // OPENAI_API_KEY: process.env.OPENAI_API_KEY,
+    NEXT_KAKAO_API_KEY: process.env.KAKAO_API_KEY,
+    NEXT_GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
 
     // NEXT_PUBLIC_ALCHEMY_API_KEY: process.env.ALCHEMY_API_KEY,
     // NEXT_PUBLIC_ALCHEMY_RPC_URL: process.env.ALCHEMY_RPC_URL,

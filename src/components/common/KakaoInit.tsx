@@ -16,7 +16,7 @@ export default function KakaoInit() {
       window.Kakao &&
       !window.Kakao.isInitialized()
     ) {
-      window.Kakao.init(process.env.KAKAO_API_KEY as string);
+      window.Kakao.init(process.env.NEXT_KAKAO_API_KEY as string);
     }
   }, []);
 

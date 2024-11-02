@@ -1,5 +1,6 @@
 "use client";
 
+import AutoTranslateText from "@/components/common/AutoTranslateText";
 import KakaoLogin from "@/components/common/KakaoLogin";
 import { useState } from "react";
 // Tesseract.js 모듈을 가져옵니다.
@@ -63,6 +64,7 @@ export default function Test() {
         Recognize Text
       </button>
       <p>Recognized Text: {text}</p>
+      <AutoTranslateText text="Welcome to our website!" />
     </div>
   );
 }
