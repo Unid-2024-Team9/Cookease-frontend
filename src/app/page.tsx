@@ -12,13 +12,7 @@ import KakaoLogin from "@/components/common/KakaoLogin";
 export default function HomeBeforeLogin() {
   return (
     <Container>
-      <Image
-        src="/images/ce_logo.png"
-        alt={"logo"}
-        width={500}
-        height={95.22}
-        style={{ margin: "0px 0px 80px 0" }}
-      />
+      <Image src="/images/ce_logo.png" alt={"logo"} width={900} height={900} />
       <KakaoLogin />
     </Container>
   );
@@ -30,5 +24,5 @@ const Container = styled.div`
   align-items: center;
   background-color: ${colors.primary};
   height: 100%;
-  padding: 90px 24px 0 24px;
+  padding: 60px 24px 0 24px;
 `;
