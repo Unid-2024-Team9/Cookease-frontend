@@ -1,62 +1,41 @@
-// app/oauth/callback/kakao/page.tsx
 "use client";
 
-import { useState } from "react";
-import Tesseract from "tesseract.js";
+import { useEffect } from "react";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
-export default function KakaoCallback() {
-  const [progress, setProgress] = useState<number>(0);
-  const [text, setText] = useState<string>("");
-  const [imageUrl, setImageUrl] = useState<string | null>(null);
+const KakaoCallback = () => {
+  const router = useRouter();
 
-  // 이미지 업로드 시 호출되는 함수
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setImageUrl(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      const params = new URL(document.location.toString()).searchParams;
+      const code = params.get("code");
 
-  // OCR 버튼 클릭 시 호출되는 함수
-  const handleClick = () => {
-    if (imageUrl) {
-      Tesseract.recognize(imageUrl, "eng+kor", {
-        logger: (m) => {
-          if (m.status === "recognizing text") {
-            const progressValue = (m.progress * 100).toFixed(2);
-            setProgress(parseFloat(progressValue));
-          }
-        },
-      })
-        .then(({ data: { text } }) => {
-          setText(text);
-          console.log(text);
-        })
-        .catch((error) => {
-          console.error("OCR 처리 중 오류 발생:", error);
+      try {
+        const response = await axios.get(
+          `https://banggeul.store/login/kakao?code=${code}`
+        );
+        const access_token = response.data.response["accessToken"];
+        console.log(access_token);
+
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${access_token}`;
+
+        axios.get("https://banggeul.store/check").then((response: any) => {
+          console.log(response);
         });
-    }
-  };
+      } catch (error) {
+        console.error("kakaoLogin error:", error);
+      }
+    };
 
-  return (
-    <div>
-      <input type="file" accept="image/*" onChange={handleImageUpload} />
-      {imageUrl && (
-        <div>
-          <img src={imageUrl} alt="Uploaded" style={{ maxWidth: "100%" }} />
-        </div>
-      )}
-      <progress value={progress} max="100">
-        {progress}%
-      </progress>
-      <button onClick={handleClick} disabled={!imageUrl}>
-        Recognize Text
-      </button>
-      <p>Recognized Text: {text}</p>
-    </div>
-  );
-}
+    fetchData();
+    router.push("/home");
+  }, [router]);
+
+  return <div>로그인 처리중입니다.</div>;
+};
+
+export default KakaoCallback;

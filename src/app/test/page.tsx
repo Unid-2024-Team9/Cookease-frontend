@@ -1,5 +1,6 @@
 "use client";
 
+import KakaoLogin from "@/components/common/KakaoLogin";
 import { useState } from "react";
 // Tesseract.js 모듈을 가져옵니다.
 import Tesseract from "tesseract.js";
@@ -47,7 +48,7 @@ export default function Test() {
 
   return (
     <div>
-      {/* <KakaoLogin /> */}
+      <KakaoLogin />
       <input type="file" accept="image/*" onChange={handleImageUpload} />
       {imageUrl && (
         <div>

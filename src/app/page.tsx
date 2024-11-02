@@ -7,6 +7,7 @@ import { Body2Regular, Heading1, Heading2, Heading3 } from "@/styles/texts";
 import { useRouter } from "next/navigation";
 import colors from "@/styles/color";
 import "./button.css";
+import KakaoLogin from "@/components/common/KakaoLogin";
 
 export default function HomeBeforeLogin() {
   const router = useRouter();
@@ -19,7 +20,7 @@ export default function HomeBeforeLogin() {
         height={95.22}
         style={{ margin: "0px 0px 107px 0" }}
       />
-      <LoginButton />
+      <KakaoLogin />
     </Container>
   );
 }
