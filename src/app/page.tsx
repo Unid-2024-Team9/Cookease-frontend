@@ -10,11 +10,10 @@ import "./button.css";
 import KakaoLogin from "@/components/common/KakaoLogin";
 
 export default function HomeBeforeLogin() {
-  const router = useRouter();
   return (
     <Container>
       <Image
-        src="/images/hs_beforelogin_logo.svg"
+        src="/images/ce_logo.png"
         alt={"logo"}
         width={315.66}
         height={95.22}
@@ -31,5 +30,5 @@ const Container = styled.div`
   align-items: center;
   background-color: ${colors.primary};
   height: 100%;
-  padding: 348px 24px 0 24px;
+  padding: 180px 24px 0 24px;
 `;

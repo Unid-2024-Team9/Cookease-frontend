@@ -36,8 +36,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <>
       <EarthContainer>
         {pathname !== "/" && <Header />}
-        <BodyContainer controlheader={pathname}>{children}</BodyContainer>
-        {pathname !== "/" && <Footer />}
+        <BodyContainer controlheader={pathname}>
+          {children}
+          {pathname !== "/" && <Footer />}
+        </BodyContainer>
       </EarthContainer>
     </>
   );
@@ -61,7 +63,8 @@ const EarthContainer = styled.div`
 const BodyContainer = styled.div<{ controlheader: string }>`
   width: 100%;
   height: 100%;
-  padding: ${({ controlheader }) => controlheader !== "/" && "80px 0"};
+  padding: ${({ controlheader }) =>
+    controlheader !== "/" ? "80px 0 80px 0" : "0"};
 `;
 
 export default Layout;

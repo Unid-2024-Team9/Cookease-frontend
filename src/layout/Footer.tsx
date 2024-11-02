@@ -88,14 +88,10 @@ const Container = styled.div`
   width: 100%;
   height: 80px;
   border-top: 1px solid #d9d9d9;
-
-  position: fixed;
-  left: 0px;
-  bottom: 0px;
-  z-index: 100;
-
+  background-color: white;
+  position: sticky;
+  bottom: 0;
   padding: 0px 44px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;

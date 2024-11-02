@@ -19,6 +19,7 @@ const Header = () => {
       {pathname == "/home" && <Header_Title title="나의 냉장고" />}
       {pathname == "/recipe" && <Header_Search searchType="recipe" />}
       {pathname == "/community" && <Header_Search searchType="community" />}
+      {pathname == "/my" && <Header_Title title="마이페이지" />}
     </>
   );
 };

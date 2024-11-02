@@ -10,10 +10,10 @@ import CalendarInput from "@/components/base/CalendarInput";
 import Modal from "@/components/common/Modal";
 import { LongOrangeButton } from "@/components/base/LongOrangeButton";
 import colors from "@/styles/color";
-import { Heading2 } from "@/styles/texts";
+import { Heading2, Heading3 } from "@/styles/texts";
 
 export default function Home() {
-  const [isSlideUpModalOpen, setIsSlideUpModalOpen] = useState(false);
+  const [isFirstSlideUpModalOpen, setIsFirstSlideUpModalOpen] = useState(false);
   const [isDepositPopUpModalOpen, setIsDepositPopUpModalOpen] = useState(false);
   const [isCompletePopUpModalOpen, setIsCompletePopUpModalOpen] =
     useState(false);
@@ -27,52 +27,83 @@ export default function Home() {
 
   return (
     <>
-      <Container></Container>
-      {/* <SlideUpModal
-        isOpen={isSlideUpModalOpen}
-        onClose={() => setIsSlideUpModalOpen(false)}
-        buttonText="Reserve now"
-        buttonOnClick={() => setIsDepositPopUpModalOpen(true)}
+      <Container>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "20px 0 14px 0",
+          }}
+        >
+          <Heading3 style={{ marginLeft: "15px" }}>냉장</Heading3>
+          <Image
+            src="/images/ce_home_plus.svg"
+            alt="plus"
+            width={30}
+            height={30}
+            style={{ marginRight: "13px", cursor: "pointer" }}
+            onClick={() => setIsFirstSlideUpModalOpen(true)}
+          />
+        </div>
+        <Fridge />
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "40px 0 14px 0",
+          }}
+        >
+          <Heading3 style={{ marginLeft: "15px" }}>냉동</Heading3>
+          <Image
+            src="/images/ce_home_plus.svg"
+            alt="plus"
+            width={30}
+            height={30}
+            style={{ marginRight: "13px", cursor: "pointer" }}
+          />
+        </div>
+        <Fridge />
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            margin: "40px 0 14px 0",
+          }}
+        >
+          <Heading3 style={{ marginLeft: "15px" }}>조미료</Heading3>
+          <Image
+            src="/images/ce_home_plus.svg"
+            alt="plus"
+            width={30}
+            height={30}
+            style={{ marginRight: "13px", cursor: "pointer" }}
+          />
+        </div>
+        <Fridge />
+        <div style={{ width: "100%", height: "40px" }}></div>
+      </Container>
+      <SlideUpModal
+        isOpen={isFirstSlideUpModalOpen}
+        onClose={() => setIsFirstSlideUpModalOpen(false)}
+        buttonText="다음"
+        buttonOnClick={() => {}} //수정 필요
         buttonActive={isPersonClicked && isTimeClicked}
       >
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
-          Book a reservation
+          냉장실에 넣을 재료 선택하기
         </Heading2>
-        <Image
-          src="/images/hs_reservation_when.svg"
-          alt={"reservation when"}
-          width={720}
-          height={32}
-          style={{ marginTop: "33px" }}
-        />
-        <CalendarInput margin="16px 0 38px 0" />
-        <Image
-          src={
-            isPersonClicked
-              ? "/images/hs_reservation_person_active.svg"
-              : "/images/hs_reservation_person_inactive.svg"
-          }
-          alt="person"
-          width={537}
-          height={72}
-          onClick={() => setIsPersonClicked(!isPersonClicked)}
-          style={{ cursor: "pointer" }}
-        />
-        <Image
-          src={
-            isTimeClicked
-              ? "/images/hs_reservation_time_active.svg"
-              : "/images/hs_reservation_time_inactive.svg"
-          }
-          alt="time"
-          width={720}
-          height={128}
-          style={{ margin: "32px 0 51px 0", cursor: "pointer" }}
-          onClick={() => setIsTimeClicked(!isTimeClicked)}
-        />
-      </SlideUpModal> */}
+        <Heading3 style={{ margin: "20px 0 0 12px" }}>카테고리</Heading3>
+      </SlideUpModal>
 
       {/* <Modal
         onClose={() => setIsDepositPopUpModalOpen(false)}
@@ -95,6 +126,7 @@ export default function Home() {
 const Container = styled.div`
   width: 100%;
   display: flex;
+  padding: 0 45px;
   flex-direction: column;
   align-items: center;
 `;
@@ -127,4 +159,13 @@ const WhiteButton = styled.div`
   &:active {
     background-color: #d9d9d9; /* 클릭 시 조금 더 어두운 색상 */
   }
+`;
+
+const Fridge = styled.div`
+  width: 100%;
+  height: 282px;
+
+  background-color: #fafafb;
+  border: 1px solid #d9d9d9;
+  border-radius: 25px;
 `;
