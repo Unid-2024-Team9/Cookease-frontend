@@ -20,6 +20,12 @@ const Header = () => {
       {pathname == "/recipe" && <Header_Search searchType="recipe" />}
       {pathname == "/community" && <Header_Search searchType="community" />}
       {pathname == "/my" && <Header_Title title="마이페이지" />}
+      {pathname.startsWith("/community/") && (
+        <Header_Title_GoBack
+          title="게시글"
+          onClickHandler={() => router.push("/community")}
+        />
+      )}
     </>
   );
 };
@@ -29,6 +35,34 @@ export default Header;
 function Header_Title({ title }: { title: string }) {
   return (
     <Container_Header_Title>
+      <Heading3>{title}</Heading3>
+      <Notification
+        src="/images/ce_notification.svg"
+        alt="notification"
+        width={30}
+        height={30}
+        isAbsolute={true}
+      />
+    </Container_Header_Title>
+  );
+}
+function Header_Title_GoBack({
+  title,
+  onClickHandler,
+}: {
+  title: string;
+  onClickHandler: any;
+}) {
+  return (
+    <Container_Header_Title>
+      <Goback
+        src="/images/ce_goback.svg"
+        alt="go back"
+        width={24}
+        height={24}
+        isAbsolute={true}
+        onClick={onClickHandler}
+      />
       <Heading3>{title}</Heading3>
       <Notification
         src="/images/ce_notification.svg"
@@ -93,4 +127,11 @@ const Notification = styled(Image)<{ isAbsolute?: boolean }>`
   position: ${(props) => props.isAbsolute == true && "absolute"};
   top: 26px;
   right: 39px;
+`;
+
+const Goback = styled(Image)<{ isAbsolute?: boolean }>`
+  cursor: pointer;
+  position: ${(props) => props.isAbsolute == true && "absolute"};
+  left: 26px;
+  top: 26px;
 `;

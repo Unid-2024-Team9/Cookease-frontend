@@ -9,7 +9,7 @@ export default function Footer() {
 
   const isHome = path === "/home";
   const isRecipe = path === "/recipe";
-  const isCommunity = path === "/community";
+  const isCommunity = path.startsWith("/community");
   const isScrap = path === "/scrap";
   const isMy = path === "/my";
   const router = useRouter();

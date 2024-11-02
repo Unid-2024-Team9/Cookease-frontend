@@ -20,9 +20,9 @@ const KakaoCallback = () => {
         const access_token = response.data.response["accessToken"];
         console.log(access_token);
 
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${access_token}`;
+        // axios.defaults.headers.common[
+        //   "Authorization"
+        // ] = `Bearer ${access_token}`;
 
         // axios.get("https://banggeul.store/check").then((response: any) => {
         //   console.log(response);
