@@ -25,22 +25,97 @@ export default function Community() {
 
   const [txHash, setTxHash] = useState("");
 
+  const [recipes, setRecipes] = useState([
+    {
+      id: 1,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content:
+        "파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요 파랑 감자 교환하실 분 구해요",
+    },
+    {
+      id: 2,
+      profileImg: "/path/to/profile2.jpg",
+      name: "김철수",
+      location: "서울시 강남구 역삼동",
+      title: "토마토 남는 분 계신가요?",
+      date: "2024-11-01",
+      content: "토마토 남는 분 계시면 댓글 주세요... (중략)",
+    },
+    {
+      id: 3,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요... (중략)",
+    },
+    {
+      id: 4,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요... (중략)",
+    },
+    {
+      id: 5,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요... (중략)",
+    },
+    {
+      id: 6,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요... (중략)",
+    },
+    {
+      id: 7,
+      profileImg: "/path/to/profile1.jpg",
+      name: "홍길동",
+      location: "서울시 동작구 상도동",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요... (중략)",
+    },
+  ]);
+
   return (
     <>
       <Container>
-        <Image
-          src="/images/hs_updown.png"
-          alt="up down"
-          width={80}
-          height={136}
-          onClick={() => setIsGoDown(!isGoDown)}
-          style={{
-            position: "absolute",
-            bottom: "100px",
-            right: "4px",
-            cursor: "pointer",
-          }}
-        />
+        {recipes.map((recipe) => (
+          <ArticleContainer
+            key={recipe.id}
+            onClick={() => router.push(`/community/${recipe.id}`)}
+          >
+            <ArticleHeader>
+              <LeftInfo>
+                <ProfileImage src={recipe.profileImg} alt={recipe.name} />
+                <Name>{recipe.name}</Name>
+                <Location>{recipe.location}</Location>
+              </LeftInfo>
+              <Date>{recipe.date}</Date>
+            </ArticleHeader>
+            <Title>{recipe.title}</Title>
+            <Content>
+              {recipe.content.length > 120
+                ? `${recipe.content.slice(0, 120)}...`
+                : recipe.content}
+            </Content>
+          </ArticleContainer>
+        ))}
       </Container>
       <SlideUpModal
         isOpen={isSlideUpModalOpen}
@@ -52,7 +127,7 @@ export default function Community() {
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
-          Book a reservation
+          커뮤니티
         </Heading2>
         <Image
           src="/images/hs_reservation_when.svg"
@@ -141,6 +216,66 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const ArticleContainer = styled.div`
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #fafafb;
+  border-radius: 20px;
+  margin-top: 2px;
+  margin-bottom: 18px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+`;
+
+const ArticleHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const LeftInfo = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ProfileImage = styled.img`
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  margin-right: 16px;
+`;
+
+const Name = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
+`;
+
+const Location = styled.div`
+  font-weight: semi-bold;
+  font-size: 15px;
+  color: #646464;
+`;
+
+const Title = styled.div`
+  font-weight: bold;
+  font-size: 20px;
+  margin: 5px 0 3px;
+`;
+
+const Date = styled.div`
+  font-weight: semi-bold;
+  font-size: 15px;
+  color: #646464;
+`;
+
+const Content = styled.div`
+  font-weight: semi-bold;
+  font-size: 15px;
+  color: #646464;
 `;
 
 const WhiteButton = styled.div`
