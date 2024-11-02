@@ -7,6 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import SlideUpModal from "@/components/base/SlideUpModal";
 import { Heading2 } from "@/styles/texts";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 interface Recipe {
   id: number;
@@ -128,7 +129,7 @@ const dummyRecipes: Recipe[] = [
 ];
 
 export default function Recipe() {
-  const [recipes, setRecipes] = useState<Recipe[]>(dummyRecipes); // 더미 데이터를 기본 값으로 설정
+  const [recipes, setRecipes] = useState<Recipe[]>(dummyRecipes);
   const [isSlideUpModalOpen, setIsSlideUpModalOpen] = useState(false);
   const [isDepositPopUpModalOpen, setIsDepositPopUpModalOpen] = useState(false);
   const [isCompletePopUpModalOpen, setIsCompletePopUpModalOpen] =
@@ -201,7 +202,7 @@ export default function Recipe() {
 
       <GridContainer>
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
+          <RecipeCard key={recipe.id} recipe={recipe} router={router}/>
         ))}
         <div ref={observer} style={{ height: "1px" }}></div>
       </GridContainer>
@@ -255,10 +256,8 @@ export default function Recipe() {
 }
 
 // 레시피 카드 컴포넌트
-const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
+const RecipeCard = ({recipe, router}:{recipe:Recipe, router: AppRouterInstance}) => {
   const [isBookmarked, setIsBookmarked] = useState(recipe.isBookmarked);
-  const router = useRouter();
-
   const toggleBookmark = (e: React.MouseEvent) => {
     e.stopPropagation();
     setIsBookmarked((prev) => !prev);
@@ -267,6 +266,7 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
   const navigateToRecipe = () => {
     router.push(`/recipe/${recipe.id}`);
   };
+
 
   return (
     <CardContainer onClick={navigateToRecipe}>
