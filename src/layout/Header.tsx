@@ -26,6 +26,8 @@ const Header = () => {
           onClickHandler={() => router.push("/community")}
         />
       )}
+      {pathname.startsWith("/recipe/") && <Header_Title title="상세 레시피" />}
+      {pathname == "/scrap" && <Header_Search searchType="scrap" />}
       {pathname.startsWith("/recipe/") && (
         <Header_Title_GoBack
           title="상세 레시피"
@@ -81,7 +83,7 @@ function Header_Title_GoBack({
   );
 }
 
-type SearchType = "recipe" | "community";
+type SearchType = "recipe" | "community" | "scrap";
 
 function Header_Search({ searchType }: { searchType: SearchType }) {
   return (

@@ -32,36 +32,6 @@ export default function Detail() {
   console.log(id);
 
   const [post, setPost] = useState<Post | null>(null);
-  const [comments, setComments] = useState<Comment[]>([
-    {
-      id: "1",
-      profileImg: defaultImgSource,
-      name: "홍길동",
-      location: "서울시 동작구 상도1동",
-      content: "저 바로 옆에 상도1동인데 교환하러 가고 싶어요!",
-    },
-    {
-      id: "2",
-      profileImg: defaultImgSource,
-      name: "김철수",
-      location: "서울시 은평구 불광동",
-      content: "저 오이 있는데 교환하실래요?",
-    },
-    {
-      id: "3",
-      profileImg: defaultImgSource,
-      name: "황진이",
-      location: "서울시 강남구 역삼동",
-      content: "혹시 오이 말고 다른 재료는 안될까요..?",
-    },
-    {
-      id: "4",
-      profileImg: defaultImgSource,
-      name: "김영희",
-      location: "서울시 동작구 상도동",
-      content: "토마토 아직 교환할 수 있나요?",
-    },
-  ]);
 
   const [newComment, setNewComment] = useState("");
 
@@ -112,45 +82,7 @@ export default function Detail() {
           </ArticleHeader>
           <Content>{post.content}</Content>
         </DetailContainer>
-
-        <CommentSection>
-          <CommentHeader>
-            <CommentTitle>댓글</CommentTitle>
-            <CommentCount>{comments.length}</CommentCount>
-          </CommentHeader>
-          <CommentList>
-            {comments.map((comment) => (
-              <div key={comment.id}>
-                <CommentContainer>
-                  <ProfileImage src={comment.profileImg} alt={comment.name} />
-                  <CommentText>
-                    <CommentHeaderRow>
-                      <Name>{comment.name}</Name>
-                      <Location>{comment.location}</Location>
-                    </CommentHeaderRow>
-                    <Content>{comment.content}</Content>
-                  </CommentText>
-                </CommentContainer>
-                <Separator />
-              </div>
-            ))}
-          </CommentList>
-        </CommentSection>
-        <div style={{ width: "100%", height: "400px" }}></div>
       </Container>
-      <CommentInputSection>
-        <CommentInput
-          placeholder="댓글을 입력하세요"
-          value={newComment}
-          onChange={handleInputChange}
-        />
-        <SubmitButton
-          onClick={handlePostComment}
-          active={newComment.trim().length > 0}
-        >
-          작성
-        </SubmitButton>
-      </CommentInputSection>
     </>
   );
 }
@@ -266,6 +198,7 @@ const CommentCount = styled.div`
 
 const CommentList = styled.div`
   height: 100%;
+  overflow-y: auto;
 `;
 
 const CommentContainer = styled.div`

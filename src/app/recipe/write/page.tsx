@@ -2,7 +2,7 @@
 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, useSearch } from "next/navigation";
 import Image from "next/image";
 import colors from "@/styles/color";
 
@@ -37,29 +37,29 @@ export default function Detail() {
       id: "1",
       profileImg: defaultImgSource,
       name: "홍길동",
-      location: "서울시 동작구 상도1동",
-      content: "저 바로 옆에 상도1동인데 교환하러 가고 싶어요!",
+      location: "서울시 동작구 상도동",
+      content: "파랑 감자 교환하실 분 구해요...",
     },
     {
       id: "2",
       profileImg: defaultImgSource,
       name: "김철수",
-      location: "서울시 은평구 불광동",
-      content: "저 오이 있는데 교환하실래요?",
+      location: "서울시 강남구 역삼동",
+      content: "토마토 남는 분 계시면 댓글 주세요...",
     },
     {
       id: "3",
       profileImg: defaultImgSource,
-      name: "황진이",
+      name: "김철수",
       location: "서울시 강남구 역삼동",
-      content: "혹시 오이 말고 다른 재료는 안될까요..?",
+      content: "토마토 남는 분 계시면 댓글 주세요...",
     },
     {
       id: "4",
       profileImg: defaultImgSource,
-      name: "김영희",
-      location: "서울시 동작구 상도동",
-      content: "토마토 아직 교환할 수 있나요?",
+      name: "김철수",
+      location: "서울시 강남구 역삼동",
+      content: "토마토 남는 분 계시면 댓글 주세요...",
     },
   ]);
 
@@ -67,14 +67,13 @@ export default function Detail() {
 
   useEffect(() => {
     const dummyPost: Post = {
-      id: id || "1",
+      id: id || "dummy-id",
       profileImg: defaultImgSource,
-      name: "김아라",
+      name: "홍길동",
       location: "서울시 동작구 상도동",
-      title: "토마토와 오이 교환 원해요",
-      date: "2024-11-03",
-      content:
-        "집에서 키운 토마토가 너무 많이 열렸어요. 오이와 교환하실 분 댓글 주세요!",
+      title: "파랑 감자 교환하실 분",
+      date: "2024-11-02",
+      content: "파랑 감자 교환하실 분 구해요...",
     };
 
     setPost(dummyPost);
@@ -136,7 +135,6 @@ export default function Detail() {
             ))}
           </CommentList>
         </CommentSection>
-        <div style={{ width: "100%", height: "400px" }}></div>
       </Container>
       <CommentInputSection>
         <CommentInput
@@ -266,6 +264,7 @@ const CommentCount = styled.div`
 
 const CommentList = styled.div`
   height: 100%;
+  overflow-y: auto;
 `;
 
 const CommentContainer = styled.div`
