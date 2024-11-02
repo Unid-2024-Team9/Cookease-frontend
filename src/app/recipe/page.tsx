@@ -282,7 +282,12 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
       <Overlay>
         <Title>{recipe.title}</Title>
         <BookmarkIcon onClick={toggleBookmark}>
-          {isBookmarked ? "🔖" : "📑"}
+          <Image
+            src={isBookmarked ? "/images/bookmarked.png" : "/images/unbookmarked.png"}
+            alt={isBookmarked ? "Bookmarked" : "Unbookmarked"}
+            width={24}
+            height={24}
+          />
         </BookmarkIcon>
       </Overlay>
     </CardContainer>
