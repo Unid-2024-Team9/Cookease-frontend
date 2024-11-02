@@ -45,7 +45,7 @@ export default function Modal({
         onClick={(e) => e.stopPropagation()}
       >
         <CloseButton
-          src="\images\hs_close.svg"
+          src="\images\ce_close.svg"
           alt="close"
           width={68}
           height={68}

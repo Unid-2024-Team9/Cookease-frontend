@@ -136,7 +136,7 @@ export default function Community() {
           height={32}
           style={{ marginTop: "33px" }}
         />
-        <CalendarInput margin="16px 0 38px 0" />
+        {/* <CalendarInput margin="16px 0 38px 0" /> */}
         <Image
           src={
             isPersonClicked

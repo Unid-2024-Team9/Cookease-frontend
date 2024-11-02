@@ -11,19 +11,28 @@ import Modal from "@/components/common/Modal";
 import { LongOrangeButton } from "@/components/base/LongOrangeButton";
 import colors from "@/styles/color";
 import { Heading2, Heading3 } from "@/styles/texts";
+import CategoryCircle, {
+  CategoryCicleWithDetail,
+} from "@/components/common/CategoryCircle";
 
 export default function Home() {
   const [isFirstSlideUpModalOpen, setIsFirstSlideUpModalOpen] = useState(false);
-  const [isDepositPopUpModalOpen, setIsDepositPopUpModalOpen] = useState(false);
-  const [isCompletePopUpModalOpen, setIsCompletePopUpModalOpen] =
+  const [isSecondSlideUpModalOpen, setIsSecondSlideUpModalOpen] =
     useState(false);
-  const [isPersonClicked, setIsPersonClicked] = useState(false);
-  const [isTimeClicked, setIsTimeClicked] = useState(false);
-  const [isGoDown, setIsGoDown] = useState(false);
+  const [isThirdSlideUpModalOpen, setIsThirdSlideUpModalOpen] = useState(false);
+  const [refrigeratedCategory, setRefrigeratedCategory] = useState(undefined);
+  const [refrigeratedSubCategory, setRefrigeratedSubCategory] =
+    useState(undefined);
 
-  const router = useRouter();
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [isFull, setIsFull] = useState(false);
 
-  const [txHash, setTxHash] = useState("");
+  const refrigeratedSubCatergoryEmoji = new Map();
+  refrigeratedSubCatergoryEmoji.set("소고기", "🥩");
+  refrigeratedSubCatergoryEmoji.set("돼지고기", "🥓");
+  refrigeratedSubCatergoryEmoji.set("닭고기", "🍗");
+  refrigeratedSubCatergoryEmoji.set("양고기", "🍖");
+  const [expDate, setExpDate] = useState("");
 
   return (
     <>
@@ -44,10 +53,85 @@ export default function Home() {
             width={30}
             height={30}
             style={{ marginRight: "13px", cursor: "pointer" }}
-            onClick={() => setIsFirstSlideUpModalOpen(true)}
+            onClick={() => {
+              setIsFirstSlideUpModalOpen(true);
+            }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                height: "100%",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <CategoryCicleWithDetail
+                  title={"🥩"}
+                  detail={"소고기"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🐟"}
+                  detail={"고등어"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🐡"}
+                  detail={"참치"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🍎"}
+                  detail={"사과"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🍈"}
+                  detail={"멜론"}
+                  setter={undefined}
+                  set={undefined}
+                />
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "space-between",
+                }}
+              >
+                <CategoryCicleWithDetail
+                  title={"🥬"}
+                  detail={"상추"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <CategoryCicleWithDetail
+                  title={"🥕"}
+                  detail={"당근"}
+                  setter={undefined}
+                  set={undefined}
+                />
+                <DummyItem></DummyItem>
+                <DummyItem></DummyItem>
+                <DummyItem></DummyItem>
+              </div>
+            </div>
+          )}
+        </Fridge>
 
         <div
           style={{
@@ -65,9 +149,53 @@ export default function Home() {
             width={30}
             height={30}
             style={{ marginRight: "13px", cursor: "pointer" }}
+            onClick={() => {
+              setIsFull(true);
+            }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
+              }}
+            >
+              <CategoryCicleWithDetail
+                title={"🥟"}
+                detail={"물만두"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍦"}
+                detail={"메로나"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍕"}
+                detail={"냉동 피자"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🧀"}
+                detail={"치즈"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🍗"}
+                detail={"냉동 치킨"}
+                setter={undefined}
+                set={undefined}
+              />
+            </div>
+          )}
+        </Fridge>
 
         <div
           style={{
@@ -87,38 +215,288 @@ export default function Home() {
             style={{ marginRight: "13px", cursor: "pointer" }}
           />
         </div>
-        <Fridge />
+        <Fridge>
+          {isFull && (
+            <div
+              style={{
+                display: "flex",
+                width: "100%",
+                justifyContent: "space-between",
+              }}
+            >
+              <CategoryCicleWithDetail
+                title={"🧂"}
+                detail={"소금"}
+                setter={undefined}
+                set={undefined}
+              />
+              <CategoryCicleWithDetail
+                title={"🌶️"}
+                detail={"고춧가루"}
+                setter={undefined}
+                set={undefined}
+              />
+              <DummyItem></DummyItem>
+              <DummyItem></DummyItem>
+              <DummyItem></DummyItem>
+            </div>
+          )}
+        </Fridge>
         <div style={{ width: "100%", height: "40px" }}></div>
       </Container>
       <SlideUpModal
         isOpen={isFirstSlideUpModalOpen}
         onClose={() => setIsFirstSlideUpModalOpen(false)}
         buttonText="다음"
-        buttonOnClick={() => {}} //수정 필요
-        buttonActive={isPersonClicked && isTimeClicked}
+        buttonOnClick={() => {
+          setIsSecondSlideUpModalOpen(true);
+          setIsFirstSlideUpModalOpen(false);
+        }}
+        buttonActive={refrigeratedCategory !== undefined}
       >
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
           냉장실에 넣을 재료 선택하기
         </Heading2>
-        <Heading3 style={{ margin: "20px 0 0 12px" }}>카테고리</Heading3>
+        <Heading3 style={{ margin: "20px 0 20px 12px" }}>카테고리</Heading3>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 27px",
+          }}
+        >
+          <CategoryCicleWithDetail
+            title={"🥩"}
+            detail={"육류"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🐟"}
+            detail={"생선"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍚"}
+            detail={"곡물"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍎"}
+            detail={"과일"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 27px",
+            margin: "20px 0 30px 0 ",
+          }}
+        >
+          <CategoryCicleWithDetail
+            title={"🍜"}
+            detail={"면"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍞"}
+            detail={"빵"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍡"}
+            detail={"떡"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🥬"}
+            detail={"채소"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+        </div>
       </SlideUpModal>
 
-      {/* <Modal
-        onClose={() => setIsDepositPopUpModalOpen(false)}
-        isOpen={isDepositPopUpModalOpen}
-        description="The reservation will be confirmed once the deposit is paid."
-        buttonText={"Payment"}
-        buttonOnClick={() => {}}
+      <SlideUpModal
+        isOpen={isSecondSlideUpModalOpen}
+        onClose={() => setIsSecondSlideUpModalOpen(false)}
+        buttonText="다음"
+        buttonOnClick={() => {
+          setIsThirdSlideUpModalOpen(true);
+          setIsSecondSlideUpModalOpen(false);
+        }}
+        buttonActive={refrigeratedSubCategory !== undefined}
       >
-        <Image
-          src="/images/hs_reservation_detail.svg"
-          alt="reservation detail"
-          width={512}
-          height={224}
-        />
-      </Modal> */}
+        <Heading2
+          style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
+        >
+          냉장실에 넣을 재료 선택하기
+        </Heading2>
+        <Heading3 style={{ margin: "20px 0 20px 12px" }}>
+          {refrigeratedCategory}
+        </Heading3>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 27px",
+            marginBottom: "30px",
+          }}
+        >
+          <CategoryCicleWithDetail
+            title={"🥩"}
+            detail={"소고기"}
+            setter={setRefrigeratedSubCategory}
+            set={refrigeratedSubCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🥓"}
+            detail={"돼지고기"}
+            setter={setRefrigeratedSubCategory}
+            set={refrigeratedSubCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍗"}
+            detail={"닭고기"}
+            setter={setRefrigeratedSubCategory}
+            set={refrigeratedSubCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍖"}
+            detail={"양고기"}
+            setter={setRefrigeratedSubCategory}
+            set={refrigeratedSubCategory}
+          />
+        </div>
+      </SlideUpModal>
+
+      <SlideUpModal
+        isOpen={isThirdSlideUpModalOpen}
+        onClose={() => setIsThirdSlideUpModalOpen(false)}
+        buttonText="등록하기"
+        buttonOnClick={() => {
+          setIsCompleteModalOpen(true);
+          setIsThirdSlideUpModalOpen(false);
+        }}
+        buttonActive={expDate !== ""}
+      >
+        <Heading2
+          style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
+        >
+          냉장실에 넣을 재료 선택하기
+        </Heading2>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            margin: "20px 0",
+          }}
+        >
+          <CategoryCircle
+            title={refrigeratedSubCatergoryEmoji.get(refrigeratedSubCategory)}
+            isClicked={false}
+          />
+        </div>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 12px",
+            marginBottom: "20px",
+          }}
+        >
+          <Heading3>재료이름</Heading3>
+          <Heading3>{refrigeratedSubCategory}</Heading3>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 12px",
+            marginBottom: "20px",
+          }}
+        >
+          <Heading3>카테고리</Heading3>
+          <Heading3>{refrigeratedCategory}</Heading3>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 12px",
+            marginBottom: "20px",
+          }}
+        >
+          <Heading3>보관</Heading3>
+          <Heading3>냉장</Heading3>
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 12px",
+            marginBottom: "20px",
+          }}
+        >
+          <Heading3>등록일시</Heading3>
+          <CalendarInput margin="none" isOcr={false} />
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0px 12px",
+            marginBottom: "20px",
+          }}
+        >
+          <Heading3>소비기한</Heading3>
+          <CalendarInput margin="none" isOcr={true} extrafunc={setExpDate} />
+        </div>
+      </SlideUpModal>
+      <Modal
+        onClose={() => setIsCompleteModalOpen(false)}
+        isOpen={isCompleteModalOpen}
+        description="등록을 완료했습니다!"
+        buttonText={"닫기"}
+        buttonOnClick={() => setIsCompleteModalOpen(false)}
+        title="냉장실 재료 등록 완료!"
+      >
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Image
+            src="/images/ce_complete.svg"
+            alt="registration complete"
+            width={136}
+            height={147}
+            style={{ marginBottom: "16px" }}
+          />
+        </div>
+      </Modal>
     </>
   );
 }
@@ -165,7 +543,14 @@ const Fridge = styled.div`
   width: 100%;
   height: 282px;
 
+  padding: 20px;
+
   background-color: #fafafb;
   border: 1px solid #d9d9d9;
   border-radius: 25px;
+`;
+
+const DummyItem = styled.div`
+  width: 80px;
+  height: 91px;
 `;
