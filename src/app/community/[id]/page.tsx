@@ -28,33 +28,34 @@ export default function Detail() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
+  const defaultImgSource = "/images/ce_profile.svg";
 
   const [post, setPost] = useState<Post | null>(null);
   const [comments, setComments] = useState<Comment[]>([
     {
       id: "1",
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       content: "파랑 감자 교환하실 분 구해요...",
     },
     {
       id: "2",
-      profileImg: "/path/to/profile2.jpg",
+      profileImg: defaultImgSource,
       name: "김철수",
       location: "서울시 강남구 역삼동",
       content: "토마토 남는 분 계시면 댓글 주세요...",
     },
     {
       id: "3",
-      profileImg: "/path/to/profile2.jpg",
+      profileImg: defaultImgSource,
       name: "김철수",
       location: "서울시 강남구 역삼동",
       content: "토마토 남는 분 계시면 댓글 주세요...",
     },
     {
       id: "4",
-      profileImg: "/path/to/profile2.jpg",
+      profileImg: defaultImgSource,
       name: "김철수",
       location: "서울시 강남구 역삼동",
       content: "토마토 남는 분 계시면 댓글 주세요...",
@@ -66,7 +67,7 @@ export default function Detail() {
   useEffect(() => {
     const dummyPost: Post = {
       id: id || "dummy-id",
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -133,6 +134,7 @@ export default function Detail() {
             ))}
           </CommentList>
         </CommentSection>
+        <div style={{ width: "100%", height: "400px" }}></div>
       </Container>
       <CommentInputSection>
         <CommentInput
@@ -262,7 +264,6 @@ const CommentCount = styled.div`
 
 const CommentList = styled.div`
   height: 100%;
-  overflow-y: auto;
 `;
 
 const CommentContainer = styled.div`

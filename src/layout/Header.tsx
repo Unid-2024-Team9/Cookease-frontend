@@ -26,7 +26,12 @@ const Header = () => {
           onClickHandler={() => router.push("/community")}
         />
       )}
-      {pathname.startsWith("/recipe/") && <Header_Title title="상세 레시피" />}
+      {pathname.startsWith("/recipe/") && (
+        <Header_Title_GoBack
+          title="상세 레시피"
+          onClickHandler={() => router.push("/recipe")}
+        />
+      )}
     </>
   );
 };

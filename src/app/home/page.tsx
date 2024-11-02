@@ -14,15 +14,20 @@ import { Heading2, Heading3 } from "@/styles/texts";
 import CategoryCircle, {
   CategoryCicleWithDetail,
 } from "@/components/common/CategoryCircle";
+import store from "@/redux/store";
 
 export default function Home() {
   const [isFirstSlideUpModalOpen, setIsFirstSlideUpModalOpen] = useState(false);
   const [isSecondSlideUpModalOpen, setIsSecondSlideUpModalOpen] =
     useState(false);
   const [isThirdSlideUpModalOpen, setIsThirdSlideUpModalOpen] = useState(false);
+  const [isFourthSlideUpModalOpen, setIsFourthSlideUpModalOpen] =
+    useState(false);
   const [refrigeratedCategory, setRefrigeratedCategory] = useState(undefined);
   const [refrigeratedSubCategory, setRefrigeratedSubCategory] =
     useState(undefined);
+
+  const [storeMethod, setStoreMethod] = useState(undefined);
 
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
   const [isFull, setIsFull] = useState(false);
@@ -142,17 +147,12 @@ export default function Home() {
             margin: "40px 0 14px 0",
           }}
         >
-          <Heading3 style={{ marginLeft: "15px" }}>냉동</Heading3>
-          <Image
-            src="/images/ce_home_plus.svg"
-            alt="plus"
-            width={30}
-            height={30}
-            style={{ marginRight: "13px", cursor: "pointer" }}
-            onClick={() => {
-              setIsFull(true);
-            }}
-          />
+          <Heading3
+            style={{ marginLeft: "15px" }}
+            onClick={() => setIsFull(true)}
+          >
+            냉동
+          </Heading3>
         </div>
         <Fridge>
           {isFull && (
@@ -206,14 +206,7 @@ export default function Home() {
             margin: "40px 0 14px 0",
           }}
         >
-          <Heading3 style={{ marginLeft: "15px" }}>실온</Heading3>
-          <Image
-            src="/images/ce_home_plus.svg"
-            alt="plus"
-            width={30}
-            height={30}
-            style={{ marginRight: "13px", cursor: "pointer" }}
-          />
+          <Heading3 style={{ marginLeft: "15px" }}>상온</Heading3>
         </div>
         <Fridge>
           {isFull && (
@@ -257,7 +250,7 @@ export default function Home() {
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
-          냉장실에 넣을 재료 선택하기
+          재료 선택하기
         </Heading2>
         <Heading3 style={{ margin: "20px 0 20px 12px" }}>카테고리</Heading3>
         <div
@@ -378,7 +371,7 @@ export default function Home() {
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
-          냉장실에 넣을 재료 선택하기
+          재료 선택하기
         </Heading2>
         <Heading3 style={{ margin: "20px 0 20px 12px" }}>
           {refrigeratedCategory}
@@ -422,17 +415,64 @@ export default function Home() {
       <SlideUpModal
         isOpen={isThirdSlideUpModalOpen}
         onClose={() => setIsThirdSlideUpModalOpen(false)}
+        buttonText="다음"
+        buttonOnClick={() => {
+          setIsFourthSlideUpModalOpen(true);
+          setIsThirdSlideUpModalOpen(false);
+        }}
+        buttonActive={storeMethod !== undefined}
+      >
+        <Heading2
+          style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
+        >
+          보관 방법 선택하기
+        </Heading2>
+
+        <Heading3 style={{ margin: "20px 0 20px 12px" }}>보관 방법</Heading3>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 27px",
+            marginBottom: "30px",
+          }}
+        >
+          <CategoryCicleWithDetail
+            title={"🧊"}
+            detail={"냉장"}
+            setter={setStoreMethod}
+            set={storeMethod}
+          />
+          <CategoryCicleWithDetail
+            title={"❄️"}
+            detail={"냉동"}
+            setter={setStoreMethod}
+            set={storeMethod}
+          />
+          <CategoryCicleWithDetail
+            title={"🌡️"}
+            detail={"실온"}
+            setter={setStoreMethod}
+            set={storeMethod}
+          />
+        </div>
+      </SlideUpModal>
+
+      <SlideUpModal
+        isOpen={isFourthSlideUpModalOpen}
+        onClose={() => setIsFourthSlideUpModalOpen(false)}
         buttonText="등록하기"
         buttonOnClick={() => {
           setIsCompleteModalOpen(true);
-          setIsThirdSlideUpModalOpen(false);
+          setIsFourthSlideUpModalOpen(false);
         }}
         buttonActive={expDate !== ""}
       >
         <Heading2
           style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
         >
-          냉장실에 넣을 재료 선택하기
+          상세 입력하기
         </Heading2>
         <div
           style={{
