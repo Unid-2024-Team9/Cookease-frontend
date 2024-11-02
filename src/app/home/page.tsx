@@ -321,6 +321,12 @@ export default function Home() {
             setter={setRefrigeratedCategory}
             set={refrigeratedCategory}
           />
+          <CategoryCicleWithDetail
+            title={"🧂"}
+            detail={"조미료"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
         </div>
 
         <div
