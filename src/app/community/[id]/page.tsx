@@ -45,7 +45,23 @@ export default function Detail() {
       location: "서울시 강남구 역삼동",
       content: "토마토 남는 분 계시면 댓글 주세요...",
     },
+    {
+      id: "3",
+      profileImg: "/path/to/profile2.jpg",
+      name: "김철수",
+      location: "서울시 강남구 역삼동",
+      content: "토마토 남는 분 계시면 댓글 주세요...",
+    },
+    {
+      id: "4",
+      profileImg: "/path/to/profile2.jpg",
+      name: "김철수",
+      location: "서울시 강남구 역삼동",
+      content: "토마토 남는 분 계시면 댓글 주세요...",
+    },
   ]);
+
+  const [newComment, setNewComment] = useState("");
 
   useEffect(() => {
     const dummyPost: Post = {
@@ -61,6 +77,17 @@ export default function Detail() {
     setPost(dummyPost);
   }, [id]);
 
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setNewComment(event.target.value);
+  };
+
+  const handlePostComment = () => {
+    if (newComment.trim()) {
+      // 댓글 추가 로직
+      setNewComment("");
+    }
+  };
+
   if (!post) return <div>Loading...</div>;
 
   return (
@@ -72,6 +99,7 @@ export default function Detail() {
             <Name>{post.name}</Name>
             <Location>{post.location}</Location>
           </HeaderText>
+          <OptionsIcon>⋮</OptionsIcon>
         </Header>
 
         <DetailContainer>
@@ -87,18 +115,38 @@ export default function Detail() {
             <CommentTitle>댓글</CommentTitle>
             <CommentCount>{comments.length}</CommentCount>
           </CommentHeader>
-          {comments.map((comment) => (
-            <CommentContainer key={comment.id}>
-              <ProfileImage src={comment.profileImg} alt={comment.name} />
-              <CommentText>
-                <Name>{comment.name}</Name>
-                <Location>{comment.location}</Location>
-                <Content>{comment.content}</Content>
-              </CommentText>
-            </CommentContainer>
-          ))}
+          <CommentList>
+            {comments.map((comment) => (
+              <div key={comment.id}>
+                <CommentContainer>
+                  <ProfileImage src={comment.profileImg} alt={comment.name} />
+                  <CommentText>
+                    <CommentHeaderRow>
+                      <Name>{comment.name}</Name>
+                      <Location>{comment.location}</Location>
+                    </CommentHeaderRow>
+                    <Content>{comment.content}</Content>
+                  </CommentText>
+                </CommentContainer>
+                <Separator />
+              </div>
+            ))}
+          </CommentList>
         </CommentSection>
       </Container>
+      <CommentInputSection>
+        <CommentInput
+          placeholder="댓글을 입력하세요"
+          value={newComment}
+          onChange={handleInputChange}
+        />
+        <SubmitButton
+          onClick={handlePostComment}
+          active={newComment.trim().length > 0}
+        >
+          작성
+        </SubmitButton>
+      </CommentInputSection>
     </>
   );
 }
@@ -115,21 +163,33 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   margin-top: 20px;
+  position: relative;
+  padding: 0 5px;
 `;
 
 const HeaderText = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   margin-left: 16px;
+`;
+
+const OptionsIcon = styled.div`
+  position: absolute;
+  right: 0;
+  font-size: 24px;
+  cursor: pointer;
 `;
 
 const DetailContainer = styled.div`
   width: 90%;
+  height: 40vh;
   background-color: #fafafb;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  border: 1px solid #d9d9d9;
+  border-radius: 15px;
+  padding: 20px 30px;
   margin-top: 20px;
+  overflow-y: auto;
 `;
 
 const ArticleHeader = styled.div`
@@ -147,15 +207,18 @@ const ProfileImage = styled.img`
 
 const Name = styled.div`
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  margin-right: 16px;
 `;
 
 const Location = styled.div`
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 16px;
   color: #646464;
 `;
 
 const Title = styled.div`
+  margin-top: 5px;
   font-weight: bold;
   font-size: 20px;
 `;
@@ -168,12 +231,14 @@ const Date = styled.div`
 const Content = styled.div`
   font-size: 16px;
   color: #646464;
-  margin-top: 10px;
+  margin-top: 15px;
 `;
 
 const CommentSection = styled.div`
   width: 90%;
+  height: 26.5vh;
   margin-top: 20px;
+  margin-bottom: 50px;
 `;
 
 const CommentHeader = styled.div`
@@ -181,59 +246,74 @@ const CommentHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  padding: 0 10px;
 `;
 
 const CommentTitle = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
 const CommentCount = styled.div`
-  font-size: 15px;
+  font-size: 20px;
+  font-weight: bold;
   color: #646464;
+`;
+
+const CommentList = styled.div`
+  height: 100%;
+  overflow-y: auto;
 `;
 
 const CommentContainer = styled.div`
   display: flex;
   align-items: flex-start;
-  background-color: #f0f0f0;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
+  padding: 10px 0;
 `;
 
 const CommentText = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 10px;
+  margin-left: 16px;
 `;
 
-const WhiteButton = styled.div`
-  width: 100%;
-  height: 64px;
-
-  background-color: white;
-  color: ${colors.primary};
-
-  font-weight: 600;
-  font-size: 20px;
-  font-family: SFPro;
-
-  border: 1px solid gray;
-  border-radius: 100px;
-  cursor: pointer;
-
-  margin-bottom: 8px;
-
+const CommentHeaderRow = styled.div`
   display: flex;
-  text-align: center;
-  justify-content: center;
   align-items: center;
+`;
 
-  &:hover {
-    background-color: #f0f0f0;
-  }
-  &:active {
-    background-color: #d9d9d9; /* 클릭 시 조금 더 어두운 색상 */
-  }
+const Separator = styled.div`
+  height: 1.5px;
+  background-color: #e0e0e0;
+  margin: 10px 0;
+`;
+
+const CommentInputSection = styled.div`
+  bottom: 7vh;
+  width: 100%;
+  max-width: 768px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px 20px;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+`;
+
+const CommentInput = styled.input`
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  outline: none;
+`;
+
+const SubmitButton = styled.button<{ active: boolean }>`
+  margin-left: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: ${(props) => (props.active ? "#ff6b00" : "#c0c0c0")};
+  background: none;
+  border: none;
+  cursor: ${(props) => (props.active ? "pointer" : "default")};
 `;
