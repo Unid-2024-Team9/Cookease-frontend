@@ -206,7 +206,7 @@ export default function Home() {
             margin: "40px 0 14px 0",
           }}
         >
-          <Heading3 style={{ marginLeft: "15px" }}>조미료</Heading3>
+          <Heading3 style={{ marginLeft: "15px" }}>실온</Heading3>
           <Image
             src="/images/ce_home_plus.svg"
             alt="plus"
@@ -269,18 +269,6 @@ export default function Home() {
           }}
         >
           <CategoryCicleWithDetail
-            title={"🥩"}
-            detail={"육류"}
-            setter={setRefrigeratedCategory}
-            set={refrigeratedCategory}
-          />
-          <CategoryCicleWithDetail
-            title={"🐟"}
-            detail={"생선"}
-            setter={setRefrigeratedCategory}
-            set={refrigeratedCategory}
-          />
-          <CategoryCicleWithDetail
             title={"🍚"}
             detail={"곡물"}
             setter={setRefrigeratedCategory}
@@ -289,6 +277,18 @@ export default function Home() {
           <CategoryCicleWithDetail
             title={"🍎"}
             detail={"과일"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🧀"}
+            detail={"유제품"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🥩"}
+            detail={"육류"}
             setter={setRefrigeratedCategory}
             set={refrigeratedCategory}
           />
@@ -304,14 +304,43 @@ export default function Home() {
           }}
         >
           <CategoryCicleWithDetail
-            title={"🍜"}
-            detail={"면"}
+            title={"🥬"}
+            detail={"채소"}
             setter={setRefrigeratedCategory}
             set={refrigeratedCategory}
           />
           <CategoryCicleWithDetail
-            title={"🍞"}
-            detail={"빵"}
+            title={"🫛"}
+            detail={"콩/견과류"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🐠"}
+            detail={"해산물"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+        </div>
+
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "0 27px",
+            margin: "20px 0 30px 0 ",
+          }}
+        >
+          <CategoryCicleWithDetail
+            title={"🥟"}
+            detail={"가공식품"}
+            setter={setRefrigeratedCategory}
+            set={refrigeratedCategory}
+          />
+          <CategoryCicleWithDetail
+            title={"🍜"}
+            detail={"면"}
             setter={setRefrigeratedCategory}
             set={refrigeratedCategory}
           />
@@ -322,8 +351,8 @@ export default function Home() {
             set={refrigeratedCategory}
           />
           <CategoryCicleWithDetail
-            title={"🥬"}
-            detail={"채소"}
+            title={"🍞"}
+            detail={"빵"}
             setter={setRefrigeratedCategory}
             set={refrigeratedCategory}
           />
