@@ -24,11 +24,12 @@ export default function Community() {
   const router = useRouter();
 
   const [txHash, setTxHash] = useState("");
+  const defaultImgSource = "/images/ce_profile.svg";
 
   const [recipes, setRecipes] = useState([
     {
       id: 1,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -38,7 +39,7 @@ export default function Community() {
     },
     {
       id: 2,
-      profileImg: "/path/to/profile2.jpg",
+      profileImg: defaultImgSource,
       name: "김철수",
       location: "서울시 강남구 역삼동",
       title: "토마토 남는 분 계신가요?",
@@ -47,7 +48,7 @@ export default function Community() {
     },
     {
       id: 3,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -56,7 +57,7 @@ export default function Community() {
     },
     {
       id: 4,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -65,7 +66,7 @@ export default function Community() {
     },
     {
       id: 5,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -74,7 +75,7 @@ export default function Community() {
     },
     {
       id: 6,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",
@@ -83,7 +84,7 @@ export default function Community() {
     },
     {
       id: 7,
-      profileImg: "/path/to/profile1.jpg",
+      profileImg: defaultImgSource,
       name: "홍길동",
       location: "서울시 동작구 상도동",
       title: "파랑 감자 교환하실 분",

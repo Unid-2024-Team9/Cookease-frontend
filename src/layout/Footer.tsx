@@ -8,7 +8,7 @@ export default function Footer() {
   const path = usePathname();
 
   const isHome = path === "/home";
-  const isRecipe = path === "/recipe";
+  const isRecipe = path.startsWith("/recipe");
   const isCommunity = path.startsWith("/community");
   const isScrap = path === "/scrap";
   const isMy = path === "/my";

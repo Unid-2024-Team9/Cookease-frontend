@@ -6,7 +6,6 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import SlideUpModal from "@/components/base/SlideUpModal";
-import colors from "@/styles/color";
 import { Heading2 } from "@/styles/texts";
 
 interface Recipe {
@@ -36,7 +35,96 @@ const dummyRecipes: Recipe[] = [
     imageUrl: "/images/sample_image.jpg",
     isBookmarked: false,
   },
-  // 추가 데이터 생략...
+  {
+    id: 4,
+    title: "불고기",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 5,
+    title: "비빔밥",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: false,
+  },
+  {
+    id: 6,
+    title: "떡볶이",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 7,
+    title: "불고기",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 8,
+    title: "비빔밥",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: false,
+  },
+  {
+    id: 9,
+    title: "떡볶이",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 10,
+    title: "불고기",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 11,
+    title: "비빔밥",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: false,
+  },
+  {
+    id: 12,
+    title: "떡볶이",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 13,
+    title: "불고기",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 14,
+    title: "비빔밥",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: false,
+  },
+  {
+    id: 15,
+    title: "떡볶이",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 16,
+    title: "불고기",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
+  {
+    id: 17,
+    title: "비빔밥",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: false,
+  },
+  {
+    id: 18,
+    title: "떡볶이",
+    imageUrl: "/images/sample_image.jpg",
+    isBookmarked: true,
+  },
 ];
 
 export default function Recipe() {
@@ -221,6 +309,7 @@ const GridContainer = styled.div`
 const CardContainer = styled.div`
   position: relative;
   width: 100%;
+  cursor: pointer;
 `;
 
 const ImageContainer = styled.div`
