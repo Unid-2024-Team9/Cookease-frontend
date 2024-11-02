@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 
 declare global {
   interface Window {
@@ -20,13 +21,13 @@ const KakaoLogin = () => {
   };
 
   return (
-    <img
+    <Image
       alt="카카오 로그인"
-      src="/images/uni_kakao_login_medium_wide.png"
+      src="/images/ce_kakao_login_medium_wide.png"
       onClick={handleLogin}
-      width={300}
-      height={45}
-      style={{ width: "500px", cursor: "pointer" }}
+      width={400}
+      height={60}
+      style={{ cursor: "pointer" }}
     />
   );
 };

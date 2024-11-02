@@ -35,9 +35,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <EarthContainer>
-        {pathname !== "/" && pathname !== "/home" && <Header />}
+        {pathname !== "/" && <Header />}
         <BodyContainer controlheader={pathname}>{children}</BodyContainer>
-        {pathname === "/home" && <Footer />}
+        {pathname !== "/" && <Footer />}
       </EarthContainer>
     </>
   );
@@ -61,11 +61,7 @@ const EarthContainer = styled.div`
 const BodyContainer = styled.div<{ controlheader: string }>`
   width: 100%;
   height: 100%;
-  padding-top: ${({ controlheader }) => controlheader === "/signup" && "65px"};
-  padding-top: ${({ controlheader }) =>
-    controlheader === "/creator-terms" && "65px"};
-  padding-top: ${({ controlheader }) => controlheader === "/creator" && "65px"};
-  padding-bottom: ${({ controlheader }) => controlheader === "/home" && "72px"};
+  padding: ${({ controlheader }) => controlheader !== "/" && "80px 0"};
 `;
 
 export default Layout;

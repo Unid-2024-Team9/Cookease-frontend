@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { getProfileImageState } from "@/redux/slice/authSlice";
 import { Heading3 } from "@/styles/texts";
 import { isAbsolute } from "path";
+import RecipeSearchBar from "@/components/common/RecipeSearchBar";
+import CommunitySearchBar from "@/components/common/CommunitySearchBar";
 
 const Header = () => {
   const router = useRouter();
@@ -14,11 +16,9 @@ const Header = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   return (
     <>
-      {pathname === "/signup" && <Header_Title title="Sign up" />}
-      {pathname === "/creator-terms" && (
-        <Header_Title title="Creator Agreement & Rewards" />
-      )}
-      {pathname === "/creator" && <Header_Title title="Upload" />}
+      {pathname == "/home" && <Header_Title title="나의 냉장고" />}
+      {pathname == "/recipe" && <Header_Search searchType="recipe" />}
+      {pathname == "/community" && <Header_Search searchType="community" />}
     </>
   );
 };
@@ -28,46 +28,38 @@ export default Header;
 function Header_Title({ title }: { title: string }) {
   return (
     <Container_Header_Title>
-      <Goback
-        src="/images/hs_goback.svg"
-        alt="go back"
-        width={24}
-        height={24}
+      <Heading3>{title}</Heading3>
+      <Notification
+        src="/images/ce_notification.svg"
+        alt="notification"
+        width={30}
+        height={30}
         isAbsolute={true}
       />
-      <Heading3>{title}</Heading3>
     </Container_Header_Title>
   );
 }
 
-function Header_Title_Next({ title }: { title: string }) {
+type SearchType = "recipe" | "community";
+
+function Header_Search({ searchType }: { searchType: SearchType }) {
   return (
-    <Container_Header_Title_Next>
-      <Goback
-        src="/images/hs_goback.svg"
-        alt="go back"
-        width={24}
-        height={24}
-        isAbsolute={false}
+    <Container_Header_Search>
+      {searchType == "recipe" ? <RecipeSearchBar /> : <CommunitySearchBar />}
+      <Notification
+        src="/images/ce_notification.svg"
+        alt="notification"
+        width={30}
+        height={30}
+        isAbsolute={true}
       />
-      <Heading3>{title}</Heading3>
-      <div
-        style={{
-          fontFamily: "SFPro",
-          fontSize: "16px",
-          fontWeight: "400",
-          cursor: "pointer",
-        }}
-      >
-        Next
-      </div>
-    </Container_Header_Title_Next>
+    </Container_Header_Search>
   );
 }
 
 const Container_Header_Title = styled.div`
   width: 100%;
-  height: 65px;
+  height: 80px;
 
   position: fixed;
   z-index: 10;
@@ -80,53 +72,24 @@ const Container_Header_Title = styled.div`
   background-color: white;
 `;
 
-const Container_Header_Title_Next = styled.div`
-  width: 100%;
-  height: 65px;
-
-  position: fixed;
-  z-index: 10;
-  padding: 0 16px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  background-color: white;
-`;
-
-const Container_Conversation = styled.div`
-  width: 100%;
-  height: 65px;
-
-  position: fixed;
-  z-index: 10;
-  padding: 0 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background-color: white;
-`;
-
-const Goback = styled(Image)<{ isAbsolute?: boolean }>`
-  cursor: pointer;
-  position: ${(props) => props.isAbsolute == true && "absolute"};
-  left: 26px;
-  top: 21px;
-`;
-
-const Container_Home = styled.div`
+const Container_Header_Search = styled.div`
   width: 100%;
   height: 80px;
 
   position: fixed;
   z-index: 10;
+  padding: 0 16px;
 
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  padding: 0 24px 0 24px;
+  background-color: white;
+`;
+
+const Notification = styled(Image)<{ isAbsolute?: boolean }>`
+  cursor: pointer;
+  position: ${(props) => props.isAbsolute == true && "absolute"};
+  top: 26px;
+  right: 39px;
 `;

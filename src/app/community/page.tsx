@@ -12,7 +12,7 @@ import { LongOrangeButton } from "@/components/base/LongOrangeButton";
 import colors from "@/styles/color";
 import { Heading2 } from "@/styles/texts";
 
-export default function Home() {
+export default function Community() {
   const [isSlideUpModalOpen, setIsSlideUpModalOpen] = useState(false);
   const [isDepositPopUpModalOpen, setIsDepositPopUpModalOpen] = useState(false);
   const [isCompletePopUpModalOpen, setIsCompletePopUpModalOpen] =
@@ -27,8 +27,22 @@ export default function Home() {
 
   return (
     <>
-      <Container></Container>
-      {/* <SlideUpModal
+      <Container>
+        <Image
+          src="/images/hs_updown.png"
+          alt="up down"
+          width={80}
+          height={136}
+          onClick={() => setIsGoDown(!isGoDown)}
+          style={{
+            position: "absolute",
+            bottom: "100px",
+            right: "4px",
+            cursor: "pointer",
+          }}
+        />
+      </Container>
+      <SlideUpModal
         isOpen={isSlideUpModalOpen}
         onClose={() => setIsSlideUpModalOpen(false)}
         buttonText="Reserve now"
@@ -72,9 +86,9 @@ export default function Home() {
           style={{ margin: "32px 0 51px 0", cursor: "pointer" }}
           onClick={() => setIsTimeClicked(!isTimeClicked)}
         />
-      </SlideUpModal> */}
+      </SlideUpModal>
 
-      {/* <Modal
+      <Modal
         onClose={() => setIsDepositPopUpModalOpen(false)}
         isOpen={isDepositPopUpModalOpen}
         description="The reservation will be confirmed once the deposit is paid."
@@ -87,7 +101,37 @@ export default function Home() {
           width={512}
           height={224}
         />
-      </Modal> */}
+      </Modal>
+      <Modal
+        onClose={() => setIsCompletePopUpModalOpen(false)}
+        isOpen={isCompletePopUpModalOpen}
+        description="Can’t wait for your visit./The creator earned a reward for helping you discover this restaurant!"
+        buttonText={"Go to My Page"}
+        buttonOnClick={() => {
+          router.push("/mypage");
+        }}
+        extra={
+          <a
+            href={`https://evm-testnet.flowscan.io/tx/0x05629a87d6a44e9bf5016d95e62390167fed513fe6cdb07f9d79dda7a94e31ca`}
+            target="_blank"
+          >
+            <WhiteButton>View on Explorer</WhiteButton>
+          </a>
+        }
+        title="Your reservation is all set!"
+      >
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Image
+            src="/images/hs_payment_complete.svg"
+            alt="payment complete"
+            width={136}
+            height={147}
+            style={{ marginBottom: "16px" }}
+          />
+        </div>
+      </Modal>
     </>
   );
 }

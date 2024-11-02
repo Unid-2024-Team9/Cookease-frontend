@@ -4,51 +4,79 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 
-interface ContainerProps {
-  backgroundcolor: string;
-}
-
 export default function Footer() {
   const path = usePathname();
 
-  const isMyPage = path === "/mypage";
-  const backgroundcolor = isMyPage ? colors.white : colors.black;
+  const isHome = path === "/home";
+  const isRecipe = path === "/recipe";
+  const isCommunity = path === "/community";
+  const isScrap = path === "/scrap";
+  const isMy = path === "/my";
   const router = useRouter();
 
-  const homeImageSrc = isMyPage
-    ? "/images/hs_foot_home_black.svg"
-    : "/images/hs_foot_home_white.svg";
+  const homeImageSrc = isHome
+    ? "/images/ce_home_active.svg"
+    : "/images/ce_home_inactive.svg";
 
-  const mypageImageSrc = isMyPage
-    ? "/images/hs_foot_mypage_black.svg"
-    : "/images/hs_foot_mypage_white.svg";
+  const recipeImageSrc = isRecipe
+    ? "/images/ce_recipe_active.svg"
+    : "/images/ce_recipe_inactive.svg";
 
+  const communityImageSrc = isCommunity
+    ? "/images/ce_community_active.svg"
+    : "/images/ce_community_inactive.svg";
+
+  const scrapImageSrc = isScrap
+    ? "/images/ce_scrap_active.svg"
+    : "/images/ce_scrap_inactive.svg";
+
+  const myImageSrc = isMy
+    ? "/images/ce_my_active.svg"
+    : "/images/ce_my_inactive.svg";
   return (
-    <Container backgroundcolor={backgroundcolor}>
+    <Container>
       <Link href="/home">
         <Image
           src={homeImageSrc}
           alt="home"
-          width={36}
-          height={36}
+          width={72}
+          height={64}
           style={{ cursor: "pointer" }}
         />
       </Link>
-      <Link href="/creator">
+      <Link href="/recipe">
         <Image
-          src="/images/hs_foot_plus.svg"
-          alt="plus"
-          width={56}
-          height={56}
+          src={recipeImageSrc}
+          alt="recipe"
+          width={72}
+          height={64}
           style={{ cursor: "pointer" }}
         />
       </Link>
-      <Link href="/mypage">
+      <Link href="/community">
         <Image
-          src={mypageImageSrc}
-          alt="my page"
-          width={36}
-          height={36}
+          src={communityImageSrc}
+          alt="community"
+          width={72}
+          height={64}
+          style={{ cursor: "pointer" }}
+        />
+      </Link>
+      <Link href="/scrap">
+        <Image
+          src={scrapImageSrc}
+          alt="scrap"
+          width={72}
+          height={64}
+          style={{ cursor: "pointer" }}
+        />
+      </Link>
+      <Link href="/my">
+        <Image
+          src={myImageSrc}
+          alt="my"
+          width={72}
+          height={64}
           style={{ cursor: "pointer" }}
         />
       </Link>
@@ -56,17 +84,18 @@ export default function Footer() {
   );
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled.div`
   width: 100%;
-  height: 72px;
-  padding: 8px 48px;
+  height: 80px;
+  border-top: 1px solid #d9d9d9;
 
   position: fixed;
   left: 0px;
   bottom: 0px;
   z-index: 100;
 
-  background-color: ${(props) => props.backgroundcolor};
+  padding: 0px 44px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;

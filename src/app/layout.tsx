@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import KakaoInit from "@/components/common/KakaoInit";
 
 export const metadata: Metadata = {
-  title: "Unid-food",
+  title: "Cookease",
   description: "Food",
 };
 
