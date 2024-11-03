@@ -33,7 +33,7 @@ const KakaoCallback = () => {
     };
 
     fetchData();
-    router.push("/home");
+    router.push("/terms");
   }, [router]);
 
   return <div>로그인 처리중입니다.</div>;

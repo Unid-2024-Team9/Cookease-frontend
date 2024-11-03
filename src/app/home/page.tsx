@@ -30,7 +30,9 @@ export default function Home() {
   const [storeMethod, setStoreMethod] = useState(undefined);
 
   const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [isChickenModalOpen, setIsChickenModalOpen] = useState(false);
   const [isFull, setIsFull] = useState(false);
+  const router = useRouter();
 
   const refrigeratedSubCatergoryEmoji = new Map();
   refrigeratedSubCatergoryEmoji.set("소고기", "🥩");
@@ -206,7 +208,12 @@ export default function Home() {
             margin: "40px 0 14px 0",
           }}
         >
-          <Heading3 style={{ marginLeft: "15px" }}>상온</Heading3>
+          <Heading3
+            style={{ marginLeft: "15px" }}
+            onClick={() => setIsChickenModalOpen(true)}
+          >
+            상온
+          </Heading3>
         </div>
         <Fridge>
           {isFull && (
@@ -565,6 +572,28 @@ export default function Home() {
         >
           <Image
             src="/images/ce_complete.svg"
+            alt="registration complete"
+            width={136}
+            height={147}
+            style={{ marginBottom: "16px" }}
+          />
+        </div>
+      </Modal>
+      <Modal
+        onClose={() => setIsChickenModalOpen(false)}
+        isOpen={isChickenModalOpen}
+        description="지금 있는 재료로 치킨 샐러드를 만들 수 있어요!"
+        buttonText={"치킨 샐러드 레시피 보러 가기"}
+        buttonOnClick={() => {
+          router.push("/recipe/9");
+        }}
+        title="치킨 샐러드"
+      >
+        <div
+          style={{ width: "100%", display: "flex", justifyContent: "center" }}
+        >
+          <Image
+            src="/images/ce_chicken_salad.svg"
             alt="registration complete"
             width={136}
             height={147}

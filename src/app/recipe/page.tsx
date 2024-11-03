@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import SlideUpModal from "@/components/base/SlideUpModal";
 import { Heading2 } from "@/styles/texts";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import dummyRecipes from "../../lib/recipes.json";
 
 interface Recipe {
   id: number;
@@ -15,118 +16,6 @@ interface Recipe {
   imageUrl: string;
   isBookmarked: boolean;
 }
-
-// 테스트용 더미 데이터
-const dummyRecipes: Recipe[] = [
-  {
-    id: 1,
-    title: "계란국",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 2,
-    title: "된장찌개",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 3,
-    title: "김치찌개",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 4,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 5,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 6,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 7,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 8,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 9,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 10,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 11,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 12,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 13,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 14,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 15,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 16,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 17,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 18,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-];
 
 export default function Recipe() {
   const [recipes, setRecipes] = useState<Recipe[]>(dummyRecipes);
@@ -202,7 +91,7 @@ export default function Recipe() {
 
       <GridContainer>
         {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} router={router}/>
+          <RecipeCard key={recipe.id} recipe={recipe} router={router} />
         ))}
         <div ref={observer} style={{ height: "1px" }}></div>
       </GridContainer>
@@ -256,7 +145,13 @@ export default function Recipe() {
 }
 
 // 레시피 카드 컴포넌트
-const RecipeCard = ({recipe, router}:{recipe:Recipe, router: AppRouterInstance}) => {
+const RecipeCard = ({
+  recipe,
+  router,
+}: {
+  recipe: Recipe;
+  router: AppRouterInstance;
+}) => {
   const [isBookmarked, setIsBookmarked] = useState(recipe.isBookmarked);
   const toggleBookmark = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -267,23 +162,25 @@ const RecipeCard = ({recipe, router}:{recipe:Recipe, router: AppRouterInstance})
     router.push(`/recipe/${recipe.id}`);
   };
 
-
   return (
     <CardContainer onClick={navigateToRecipe}>
       <ImageContainer>
         <Image
           src={recipe.imageUrl}
           alt={recipe.title}
-          width={300}
-          height={300}
-          layout="responsive"
+          layout="fill" // 부모 컨테이너를 꽉 채우도록 설정
+          objectFit="cover" // 이미지를 컨테이너 크기에 맞춰 꽉 채우기
         />
       </ImageContainer>
       <Overlay>
         <Title>{recipe.title}</Title>
         <BookmarkIcon onClick={toggleBookmark}>
           <Image
-            src={isBookmarked ? "/images/bookmarked.png" : "/images/unbookmarked.png"}
+            src={
+              isBookmarked
+                ? "/images/bookmarked.png"
+                : "/images/unbookmarked.png"
+            }
             alt={isBookmarked ? "Bookmarked" : "Unbookmarked"}
             width={24}
             height={24}
@@ -318,8 +215,9 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 100%;
-  height: auto;
+  width: 234.67px;
+  height: 234.67px;
+  position: relative;
 `;
 
 const Overlay = styled.div`

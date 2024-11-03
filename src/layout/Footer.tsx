@@ -46,6 +46,16 @@ export default function Footer() {
             />
           </FloatingButton>
         )}
+        {path === "/home" && (
+          <FloatingButton onClick={() => {}}>
+            <Image
+              src="/images/ce_merge_recipe.svg"
+              alt="write"
+              width={32}
+              height={32}
+            />
+          </FloatingButton>
+        )}
 
         <Link href="/home">
           <Image

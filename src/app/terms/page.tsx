@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { LongOrangeButton } from "@/components/base/LongOrangeButton";
 import { useRouter } from "next/navigation";
-import { signContract } from "@/lib/sign/sign-contract";
-// import { useGetSigner } from "@/lib/sign/useGetSigner";
 import Modal from "@/components/common/Modal";
 import colors from "@/styles/color";
 import Image from "next/image";
 
-export default function CreatorTerms() {
+export default function Terms() {
   const router = useRouter();
   const [isChecked, setIsChecked] = useState(false);
 
@@ -18,44 +16,15 @@ export default function CreatorTerms() {
     setIsChecked(event.target.checked); // 체크 여부에 따라 상태 업데이트
   };
 
-  // const getSigner = useGetSigner();
-  /**
-   * Sign Contract
-   * 1. Sign on Metamask -> 2. Open Covered Modal
-   */
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const onSignContract = async () => {
-    // const signer = await getSigner();
-    // await signContract(
-    //   signer,
-    //   "0x3F233a18310c563270C3f8C6E9759b5f32FF4E08", // TODO: Insurer wallet address
-    //   "Premium"
-    // );
-    setIsModalOpen(true);
-  };
-  const onCloseModal = () => {
-    setIsModalOpen(false);
-    router.push("/home");
-  };
-
   return (
     <>
       <Container>
-        {/* <Modal onClose={onCloseModal} isOpen={isModalOpen}>
-          <ModalContainer>
-            <img width={136} src="/images/vb_you_covered.png" />
-            <h1>{"You've Covered!"}</h1>
-            <h3>Start your safe journey now.</h3>
-            <LongOrangeButton onClick={onCloseModal}>
-              Go to Homepage
-            </LongOrangeButton>
-          </ModalContainer>
-        </Modal> */}
         <Image
-          src="/images/hs_terms.svg"
+          src="/images/ce_terms.svg"
           width={720}
-          height={656}
+          height={788}
           alt="terms"
+          style={{ marginTop: "-10px" }}
         />
         <FooterWrapper>
           <CheckboxWrapper>
@@ -65,13 +34,13 @@ export default function CreatorTerms() {
               onChange={handleCheckboxChange}
               style={{ width: "24px", height: "24px", margin: "0 8px 0 2px" }}
             />
-            <p>I agree to the terms and rewards</p>
+            <p>동의합니다</p>
           </CheckboxWrapper>
           <LongOrangeButton
             active={isChecked}
-            onClick={() => router.push("/creator")}
+            onClick={() => router.push("/home")}
           >
-            {"Let's Go to Upload"}
+            {"약관 동의 후 회원 가입"}
           </LongOrangeButton>
         </FooterWrapper>
       </Container>

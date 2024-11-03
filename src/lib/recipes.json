@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "title": "계란국",
+    "imageUrl": "/images/recipe/ce_계란국.webp",
+    "isBookmarked": false
+  },
+  {
+    "id": 2,
+    "title": "된장찌개",
+    "imageUrl": "/images/recipe/ce_된장찌개.jpeg",
+    "isBookmarked": true
+  },
+  {
+    "id": 3,
+    "title": "아프리칸 콩 수프",
+    "imageUrl": "/images/recipe/ce_아프리칸콩수프.webp",
+    "isBookmarked": false
+  },
+  {
+    "id": 4,
+    "title": "김치찌개",
+    "imageUrl": "/images/recipe/ce_김치찌개.jpeg",
+    "isBookmarked": true
+  },
+  {
+    "id": 5,
+    "title": "비빔밥",
+    "imageUrl": "/images/recipe/ce_비빔밥.jpg",
+    "isBookmarked": false
+  },
+  {
+    "id": 6,
+    "title": "떡볶이",
+    "imageUrl": "/images/recipe/ce_떡볶이.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 7,
+    "title": "불고기",
+    "imageUrl": "/images/recipe/ce_불고기.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 8,
+    "title": "KFC 콘샐러드",
+    "imageUrl": "/images/recipe/ce_콘샐러드.jpg",
+    "isBookmarked": false
+  },
+  {
+    "id": 9,
+    "title": "치킨 샐러드",
+    "imageUrl": "/images/recipe/ce_치킨샐러드.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 10,
+    "title": "칠리새우",
+    "imageUrl": "/images/recipe/ce_칠리새우.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 11,
+    "title": "김치볶음밥",
+    "imageUrl": "/images/recipe/ce_김치볶음밥.jpg",
+    "isBookmarked": false
+  },
+  {
+    "id": 12,
+    "title": "강된장",
+    "imageUrl": "/images/recipe/ce_강된장.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 13,
+    "title": "전복밥",
+    "imageUrl": "/images/recipe/ce_전복밥.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 14,
+    "title": "함박스테이크",
+    "imageUrl": "/images/recipe/ce_함박스테이크.jpg",
+    "isBookmarked": false
+  },
+  {
+    "id": 15,
+    "title": "두부조림",
+    "imageUrl": "/images/recipe/ce_두부조림.jpg",
+    "isBookmarked": true
+  },
+  {
+    "id": 16,
+    "title": "계피사과잼",
+    "imageUrl": "/images/recipe/ce_계피사과잼.jpg",
+    "isBookmarked": true
+  }
+]

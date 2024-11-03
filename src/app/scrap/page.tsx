@@ -5,8 +5,7 @@ import Image from "next/image";
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import SlideUpModal from "@/components/base/SlideUpModal";
-import { Heading2 } from "@/styles/texts";
+import dummyRecipes from "../../lib/recipes.json";
 
 interface Recipe {
   id: number;
@@ -15,127 +14,8 @@ interface Recipe {
   isBookmarked: boolean;
 }
 
-// 테스트용 더미 데이터
-const dummyRecipes: Recipe[] = [
-  {
-    id: 1,
-    title: "계란국",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 2,
-    title: "된장찌개",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 3,
-    title: "김치찌개",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 4,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 5,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 6,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 7,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 8,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 9,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 10,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 11,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 12,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 13,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 14,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 15,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 16,
-    title: "불고기",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-  {
-    id: 17,
-    title: "비빔밥",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: false,
-  },
-  {
-    id: 18,
-    title: "떡볶이",
-    imageUrl: "/images/sample_image.jpg",
-    isBookmarked: true,
-  },
-];
-
-export default function Recipe() {
+export default function Scrap() {
   const [recipes, setRecipes] = useState<Recipe[]>(dummyRecipes); // 더미 데이터를 기본 값으로 설정
-  const [isSlideUpModalOpen, setIsSlideUpModalOpen] = useState(false);
-  const [isDepositPopUpModalOpen, setIsDepositPopUpModalOpen] = useState(false);
-  const [isCompletePopUpModalOpen, setIsCompletePopUpModalOpen] =
-    useState(false);
-  const [isPersonClicked, setIsPersonClicked] = useState(false);
-  const [isTimeClicked, setIsTimeClicked] = useState(false);
-  const [isGoDown, setIsGoDown] = useState(false);
 
   const observer = useRef<HTMLDivElement | null>(null);
   const [page, setPage] = useState(1);
@@ -185,71 +65,16 @@ export default function Recipe() {
 
   return (
     <Container>
-      <Image
-        src="/images/hs_updown.png"
-        alt="up down"
-        width={80}
-        height={136}
-        onClick={() => setIsGoDown(!isGoDown)}
-        style={{
-          position: "absolute",
-          bottom: "100px",
-          right: "4px",
-          cursor: "pointer",
-        }}
-      />
-
       <GridContainer>
-        {recipes.map((recipe) => (
-          <RecipeCard key={recipe.id} recipe={recipe} />
-        ))}
+        {recipes
+          .filter((recipe) => recipe.isBookmarked) // isBookmarked가 true인 것만 필터링
+          .map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
         <div ref={observer} style={{ height: "1px" }}></div>
       </GridContainer>
 
-      <SlideUpModal
-        isOpen={isSlideUpModalOpen}
-        onClose={() => setIsSlideUpModalOpen(false)}
-        buttonText="Reserve now"
-        buttonOnClick={() => setIsDepositPopUpModalOpen(true)}
-        buttonActive={isPersonClicked && isTimeClicked}
-      >
-        <Heading2
-          style={{ width: "100%", textAlign: "center", marginTop: "28px" }}
-        >
-          Book a reservation
-        </Heading2>
-        <Image
-          src="/images/hs_reservation_when.svg"
-          alt={"reservation when"}
-          width={720}
-          height={32}
-          style={{ marginTop: "33px" }}
-        />
-        <Image
-          src={
-            isPersonClicked
-              ? "/images/hs_reservation_person_active.svg"
-              : "/images/hs_reservation_person_inactive.svg"
-          }
-          alt="person"
-          width={537}
-          height={72}
-          onClick={() => setIsPersonClicked(!isPersonClicked)}
-          style={{ cursor: "pointer" }}
-        />
-        <Image
-          src={
-            isTimeClicked
-              ? "/images/hs_reservation_time_active.svg"
-              : "/images/hs_reservation_time_inactive.svg"
-          }
-          alt="time"
-          width={720}
-          height={128}
-          style={{ margin: "32px 0 51px 0", cursor: "pointer" }}
-          onClick={() => setIsTimeClicked(!isTimeClicked)}
-        />
-      </SlideUpModal>
+      {/* <div style={{ width: "100%", height: "300px" }}></div> */}
     </Container>
   );
 }
@@ -274,9 +99,8 @@ const RecipeCard: React.FC<{ recipe: Recipe }> = ({ recipe }) => {
         <Image
           src={recipe.imageUrl}
           alt={recipe.title}
-          width={300}
-          height={300}
-          layout="responsive"
+          layout="fill" // 부모 컨테이너를 꽉 채우도록 설정
+          objectFit="cover" // 이미지를 컨테이너 크기에 맞춰 꽉 채우기
         />
       </ImageContainer>
       <Overlay>
@@ -322,8 +146,9 @@ const CardContainer = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 100%;
-  height: auto;
+  width: 234.67px;
+  height: 234.67px;
+  position: relative;
 `;
 
 const Overlay = styled.div`

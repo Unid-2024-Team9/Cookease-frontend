@@ -16,6 +16,7 @@ const Header = () => {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   return (
     <>
+      {pathname == "/terms" && <Header_Title title="이용 약관" />}
       {pathname == "/home" && <Header_Title title="나의 냉장고" />}
       {pathname == "/recipe" && <Header_Search searchType="recipe" />}
       {pathname == "/community" && <Header_Search searchType="community" />}

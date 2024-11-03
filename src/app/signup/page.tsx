@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { styled } from "styled-components";
 import { LongOrangeButton } from "@/components/base/LongOrangeButton";
 import { useRouter } from "next/navigation";
-import { signContract } from "@/lib/sign/sign-contract";
-// import { useGetSigner } from "@/lib/sign/useGetSigner";
 import Modal from "@/components/common/Modal";
 import colors from "@/styles/color";
 import Image from "next/image";

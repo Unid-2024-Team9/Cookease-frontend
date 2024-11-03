@@ -38,7 +38,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
         {pathname !== "/" && <Header />}
         <BodyContainer controlheader={pathname}>
           {children}
-          {pathname !== "/" && <Footer />}
+          {pathname !== "/" && pathname !== "/terms" && <Footer />}
         </BodyContainer>
       </EarthContainer>
     </>

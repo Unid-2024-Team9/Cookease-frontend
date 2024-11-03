@@ -7,26 +7,22 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const dummyRecipe = {
-  id: 1,
-  title: "계란국",
-  imageUrl: "/images/sample_image.jpg",
-  description: "따뜻한 계란국 만드는 방법",
+  id: 9,
+  title: "치킨 샐러드",
+  imageUrl: "/images/recipe/ce_치킨샐러드.jpg",
+  description: "맛있는 치킨샐러드 만드는 방법",
   ingredients: [
-    { name: "간장", amount: 0.5, unit: "숟가락" },
-    { name: "간장", amount: 0.5, unit: "숟가락" },
-    { name: "간장", amount: 0.5, unit: "숟가락" },
-    { name: "간장", amount: 0.5, unit: "숟가락" },
-    { name: "물", amount: 3, unit: "컵" },
-    { name: "계란", amount: 2, unit: "개" },
+    { name: "냉동치킨", amount: 10, unit: "개" },
+    { name: "양상추", amount: 8, unit: "잎" },
+    { name: "머스타드소스", amount: 1, unit: "숟가락" },
+    { name: "사과", amount: 1, unit: "개" },
   ],
   instructions: [
-    "냄비에 물을 넣고 끓입니다.",
-    "간장을 넣고 맛을 냅니다.",
-    "계란을 풀어서 넣고 저어줍니다.계란을 풀어서 넣고 저어줍니다.계란을 풀어서 넣고 저어줍니다.계란을 풀어서 넣고 저어줍니다.계란을 풀어서 넣고 저어줍니다.",
-    "완성된 계란국을 그릇에 담아냅니다.",
-    "완성된 계란국을 그릇에 담아냅니다.",
-    "완성된 계란국을 그릇에 담아냅니다.",
-    "완성된 계란국을 그릇에 담아냅니다.",
+    "냉동치킨을 데웁니다",
+    "양상추와 사과 씻습니다.",
+    "사과를 먹기 좋은 크기로 자릅니다",
+    "데운 냉동치킨과 양상추, 사과를 볼에 담고 머스타드와 함께 버무립니다.",
+    "완성된 치킨 샐러드를 그릇에 담아냅니다.",
   ],
 };
 
@@ -47,27 +43,6 @@ interface RecipeDetails {
 
 export default function RecipeDetail() {
   const { id } = useParams(); // URL에서 id 추출
-  //const [recipe, setRecipe] = useState<RecipeDetails | null>(null);
-
-  // useEffect(() => {
-  //   if (id) {
-  //     fetchRecipeDetails(id);
-  //   }
-  // }, [id]);
-
-  // const fetchRecipeDetails = async (recipeId: string) => {
-  //   try {
-  //     const response = await axios.get(`/api/recipes/${recipeId}`);
-  //     setRecipe(response.data);
-  //   } catch (error) {
-  //     console.error("Failed to fetch recipe details:", error);
-  //   }
-  // };
-
-  // if (!recipe) {
-  //   return <p>Loading...</p>;
-  // }
-
   const recipe = dummyRecipe;
 
   return (
