@@ -20,13 +20,18 @@ const Header = () => {
       {pathname == "/recipe" && <Header_Search searchType="recipe" />}
       {pathname == "/community" && <Header_Search searchType="community" />}
       {pathname == "/my" && <Header_Title title="마이페이지" />}
-      {pathname.startsWith("/community/") && (
-        <Header_Title_GoBack
-          title="게시글"
-          onClickHandler={() => router.push("/community")}
-        />
-      )}
-      {pathname.startsWith("/recipe/") && <Header_Title title="상세 레시피" />}
+      {pathname.startsWith("/community/") &&
+        (pathname === "/community/write" ? (
+          <Header_Title_GoBack
+            title="게시글 작성"
+            onClickHandler={() => router.push("/community")}
+          />
+        ) : (
+          <Header_Title_GoBack
+            title="게시글"
+            onClickHandler={() => router.push("/community")}
+          />
+        ))}
       {pathname == "/scrap" && <Header_Search searchType="scrap" />}
       {pathname.startsWith("/recipe/") && (
         <Header_Title_GoBack

@@ -9,9 +9,9 @@ export default function My() {
       <Image
         src="/images/ce_mypage.svg"
         alt="my page"
-        width={628}
+        width={520}
         height={365}
-        style={{ marginTop: "-350px", cursor: "pointer" }}
+        style={{ marginTop: "-460px", cursor: "pointer" }}
       />
     </Container>
   );

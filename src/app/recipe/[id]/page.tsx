@@ -17,7 +17,7 @@ const dummyRecipe = {
     { name: "간장", amount: 0.5, unit: "숟가락" },
     { name: "간장", amount: 0.5, unit: "숟가락" },
     { name: "물", amount: 3, unit: "컵" },
-    { name: "계란", amount: 2, unit: "개" }
+    { name: "계란", amount: 2, unit: "개" },
   ],
   instructions: [
     "냄비에 물을 넣고 끓입니다.",
@@ -26,8 +26,8 @@ const dummyRecipe = {
     "완성된 계란국을 그릇에 담아냅니다.",
     "완성된 계란국을 그릇에 담아냅니다.",
     "완성된 계란국을 그릇에 담아냅니다.",
-    "완성된 계란국을 그릇에 담아냅니다."
-  ]
+    "완성된 계란국을 그릇에 담아냅니다.",
+  ],
 };
 
 interface Ingredient {
@@ -109,6 +109,7 @@ export default function RecipeDetail() {
           </InstructionContainer>
         ))}
       </InstructionsContainer>
+      <div style={{ width: "100%", height: "100px" }}></div>
     </Container>
   );
 }
@@ -148,7 +149,7 @@ const IngredientsContainer = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 45px;
   margin: -25px;
 `;
 

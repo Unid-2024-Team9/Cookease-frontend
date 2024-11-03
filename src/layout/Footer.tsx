@@ -37,7 +37,7 @@ export default function Footer() {
     <>
       <Container>
         {(path === "/community" || path === "/recipe") && (
-          <FloatingButton onClick={() => router.push("/community/write")}>
+          <FloatingButton onClick={() => router.push(`${path}/write`)}>
             <Image
               src="/images/ce_emoji_pencil.svg"
               alt="write"
